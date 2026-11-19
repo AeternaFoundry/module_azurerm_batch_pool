@@ -328,14 +328,6 @@ EOT
   validation {
     condition = alltrue([
       for k, v in var.batch_pools : (
-        length(v.name) <= 64
-      )
-    ])
-    error_message = "[from validate.PoolName: invalid when len(value) > 64]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.batch_pools : (
         length(v.resource_group_name) <= 90
       )
     ])
@@ -356,14 +348,6 @@ EOT
       )
     ])
     error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
-  }
-  validation {
-    condition = alltrue([
-      for k, v in var.batch_pools : (
-        length(v.account_name) <= 24
-      )
-    ])
-    error_message = "[from validate.AccountName: invalid when len(value) > 24]"
   }
   validation {
     condition = alltrue([
@@ -717,6 +701,6 @@ EOT
     ])
     error_message = "must not be empty"
   }
-  # Note: 36 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
+  # Note: 34 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
